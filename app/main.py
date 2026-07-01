@@ -47,10 +47,7 @@ if column:
 
     extra_subtitle = st.text_input("Additional subtitle text? (optional)")
 
-    st.markdown("**Teaser** (auto-extracted from the article body — edit as needed)")
-    teaser = st.text_area("Teaser", value=column.teaser, label_visibility="collapsed", height=100)
-
-    default_caption = build_default_caption(column.title, extra_subtitle, teaser)
+    default_caption = build_default_caption(column.title, extra_subtitle)
     st.markdown("**Caption** (edit before export)")
     caption_text = st.text_area("Caption", value=default_caption, label_visibility="collapsed", height=200)
 

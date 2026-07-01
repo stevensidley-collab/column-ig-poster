@@ -24,7 +24,7 @@ machine — no separate token needed.
 ## Workflow
 
 1. Paste a Substack column URL and click "Fetch column".
-2. Optionally add extra subtitle text; edit the auto-extracted teaser and caption.
+2. Optionally add extra subtitle text; edit the caption if needed.
 3. Click "Generate image" to preview the 1080x1350 composite.
 4. "Save image + caption to /output" writes the `.jpg`/`.txt` locally and appends
    a record to `posts_history.json`.
