@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Meanderings by Steven Boykey Sidley</title>
+  <meta name="robots" content="noindex" />
+  <script>
+    fetch("redirect.json")
+      .then((r) => r.json())
+      .then((data) => {
+        window.location.replace(data.url);
+      })
+      .catch(() => {
+        document.getElementById("fallback").style.display = "block";
+      });
+  </script>
+</head>
+<body>
+  <p id="fallback" style="display:none; font-family: sans-serif;">
+    Redirecting to the latest column&hellip; if nothing happens,
+    <a href="https://example.substack.com">click here</a>.
+  </p>
+</body>
+</html>
