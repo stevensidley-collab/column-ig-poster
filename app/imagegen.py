@@ -7,7 +7,7 @@ from pathlib import Path
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
-from caption import SIGNOFF
+IMAGE_SIGNOFF = "https://substack.com/@stevenboykeysidley or click on link in my bio"
 
 CANVAS_SIZE = (1080, 1350)  # 4:5 portrait
 FONTS_DIR = Path(__file__).parent / "fonts"
@@ -16,7 +16,7 @@ SUBTITLE_FONT_PATH = FONTS_DIR / "Montserrat-Medium.ttf"
 
 MARGIN = 64
 TITLE_FONT_SIZE = 64
-SUBTITLE_FONT_SIZE = 36
+SUBTITLE_FONT_SIZE = TITLE_FONT_SIZE // 2
 LINE_SPACING = 10
 BAND_PADDING = 48
 
@@ -64,7 +64,7 @@ def _wrap_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFon
 
 def build_image(hero_image_url: str, title: str, extra_subtitle: str | None = None) -> Image.Image:
     """Download the hero image, center-crop to 4:5, and overlay the title, an optional
-    extra subtitle, and the fixed Meanderings sign-off beneath it."""
+    extra subtitle, and the fixed on-image sign-off beneath it."""
     hero = _download_image(hero_image_url)
     canvas = _center_crop_resize(hero, CANVAS_SIZE)
     draw = ImageDraw.Draw(canvas, "RGBA")
@@ -78,7 +78,7 @@ def build_image(hero_image_url: str, title: str, extra_subtitle: str | None = No
     subtitle_lines = []
     if extra_subtitle:
         subtitle_lines.extend(_wrap_text(draw, extra_subtitle, subtitle_font, max_text_width))
-    subtitle_lines.extend(_wrap_text(draw, SIGNOFF, subtitle_font, max_text_width))
+    subtitle_lines.extend(_wrap_text(draw, IMAGE_SIGNOFF, subtitle_font, max_text_width))
 
     title_line_height = title_font.size + LINE_SPACING
     subtitle_line_height = subtitle_font.size + LINE_SPACING
